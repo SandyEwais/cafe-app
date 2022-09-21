@@ -16,7 +16,7 @@ class CreateTablesTable extends Migration
         Schema::create('tables', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('quest_number');
+            $table->integer('guest_number');
             $table->string('status')->default('available');
             $table->string('location');
             $table->timestamps();

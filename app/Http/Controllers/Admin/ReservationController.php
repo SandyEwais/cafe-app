@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
-use App\Http\Controllers\Controller;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\ReservationStoreRequest;
 
 class ReservationController extends Controller
 {
@@ -27,7 +28,10 @@ class ReservationController extends Controller
      */
     public function create()
     {
-        return view('admin.reservations.create');
+        $tables = DB::table('tables')->get(['id','name']);
+        return view('admin.reservations.create',[
+            'tables' => $tables
+        ]);
     }
 
     /**
@@ -36,9 +40,19 @@ class ReservationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ReservationStoreRequest $request)
     {
-        //
+        Reservation::create([
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'date' => $request->date,
+            'guest_number' => $request->guest_number,
+            'table_id' => $request->table_id
+
+        ]);
+        return redirect()->route('admin.reservations.index');
     }
 
     /**
@@ -58,9 +72,12 @@ class ReservationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Reservation $reservation)
     {
-        //
+        return view('admin.reservations.edit',[
+            'reservation' => $reservation,
+            'tables' => DB::table('tables')->get(['id','name'])
+        ]);
     }
 
     /**
@@ -70,9 +87,18 @@ class ReservationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ReservationStoreRequest $request, Reservation $reservation)
     {
-        //
+        $reservation->update([
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'date' => $request->date,
+            'guest_number' => $request->guest_number,
+            'table_id' => $request->table_id
+        ]);
+        return redirect()->route('admin.reservations.index');
     }
 
     /**
@@ -81,8 +107,9 @@ class ReservationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Reservation $reservation)
     {
-        //
+        $reservation->delete();
+        return redirect()->route('admin.reservations.index');
     }
 }

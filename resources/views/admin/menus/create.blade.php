@@ -43,12 +43,17 @@
                 <div class="relative z-0 mb-6 w-full group">
         
                     <label for="categories" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Select Category</label>
-                    <select multiple="" id="categories" name="categories[]" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-100 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <select multiple="" id="categories" name="categories[]" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-300 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         @foreach ($categories as $category)
-                        <option value="{{$category->id}}">{{$category->name}}</option>
+                        <option value="{{$category->id}}" {{ (collect(old('categories'))->contains($category->id)) ? 'selected':'' }}>{{$category->name}}</option>
                         @endforeach
                         
                     </select>
+                    <p class="text-sm text-red-600">
+                        @error('categories')
+                            {{$message}}
+                        @enderror
+                    </p>
             
                 </div>
                 <div class="relative z-0 mb-6 w-full group">

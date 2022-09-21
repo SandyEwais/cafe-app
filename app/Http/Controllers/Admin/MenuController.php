@@ -82,7 +82,8 @@ class MenuController extends Controller
     {
         return view('admin.menus.edit',[
             'menu' => $menu,
-            'categories' => DB::table('categories')->get(['name','id'])
+            'categories' => DB::table('categories')->get(['name','id']),
+            'selected' => DB::table('category_menu')->where('menu_id','=',$menu->id)->get('category_id')
         ]);
     }
 

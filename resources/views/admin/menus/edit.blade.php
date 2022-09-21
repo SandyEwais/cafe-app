@@ -47,7 +47,12 @@
                     <select multiple="" name="categories[]" id="categories" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-100 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         @foreach ($categories as $category)
                        
-                        <option value="{{$category->id}}">{{$category->name}}</option>
+                        <option value="{{$category->id}}"
+                            @foreach ($selected as $item)
+                            {{ (collect($item)->contains($category->id)) ? 'selected':'' }}
+                            @endforeach
+                             
+                             >{{$category->name}}</option>
                         @endforeach
                         
                     </select>
