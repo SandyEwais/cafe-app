@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests\Admin;
 
+use App\Rules\DateValidation;
+use App\Rules\TimeValidation;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ReservationStoreRequest extends FormRequest
@@ -30,7 +32,7 @@ class ReservationStoreRequest extends FormRequest
             'phone' => 'required',
             'guest_number' => 'required',
             'table_id' => 'required',
-            'date' => 'required'
+            'date' => ['required','date',new DateValidation,new TimeValidation]
         ];
     }
 }

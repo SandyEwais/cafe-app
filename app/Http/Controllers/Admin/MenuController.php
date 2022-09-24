@@ -58,7 +58,7 @@ class MenuController extends Controller
         if($request->has('categories')){
             $menu->categories()->attach($request->categories);
         }
-        return redirect()->route('admin.menus.index');
+        return redirect()->route('admin.menus.index')->with('store','Menu Created Successfully !');
     }
 
     /**
@@ -113,7 +113,7 @@ class MenuController extends Controller
         if($request->has('categories')){
             $menu->categories()->attach($request->categories);
         }
-        return redirect()->route('admin.menus.index');
+        return redirect()->route('admin.menus.index')->with('update','Menu Updated Successfully !');
     }
 
     /**
@@ -125,6 +125,6 @@ class MenuController extends Controller
     public function destroy(menu $menu)
     {
         $menu->delete();
-        return redirect()->route('admin.menus.index');
+        return redirect()->route('admin.menus.index')->with('delete','Menu Deleted Successfully !');
     }
 }

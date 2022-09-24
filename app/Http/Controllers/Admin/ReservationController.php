@@ -52,7 +52,7 @@ class ReservationController extends Controller
             'table_id' => $request->table_id
 
         ]);
-        return redirect()->route('admin.reservations.index');
+        return redirect()->route('admin.reservations.index')->with('store','Reservation Created Successfully !');
     }
 
     /**
@@ -98,7 +98,7 @@ class ReservationController extends Controller
             'guest_number' => $request->guest_number,
             'table_id' => $request->table_id
         ]);
-        return redirect()->route('admin.reservations.index');
+        return redirect()->route('admin.reservations.index')->with('update','Reservation Updated Successfully !');
     }
 
     /**
@@ -110,6 +110,6 @@ class ReservationController extends Controller
     public function destroy(Reservation $reservation)
     {
         $reservation->delete();
-        return redirect()->route('admin.reservations.index');
+        return redirect()->route('admin.reservations.index')->with('delete','Reservation Deleted Successfully !');
     }
 }

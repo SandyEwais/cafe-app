@@ -13,6 +13,7 @@
         <!-- Scripts -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <script defer src="{{asset('js/app.js')}}"></script>
+        <script src="//unpkg.com/alpinejs" defer></script>
     </head>
     <body class="font-sans antialiased">
         <div class="flex-col w-full md:flex md:flex-row md:min-h-screen">

@@ -1,4 +1,5 @@
 <x-admin-layout>
+    <x-flash-message/>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Dashboard') }}
@@ -46,7 +47,7 @@
                                 <td class="py-4 px-6">
                                     {{$menu->description}}
                                 </td>
-                                <td class="py-6 px-6">
+                                <td class="py-4 px-6">
                                     <div class="flex space-x-2">
                                         
                                         <a href="{{route('admin.menus.edit',['menu' => $menu->id])}}" class="px-4 py-2 bg-slate-500 hover:bg-slate-700 rounded-md text-white">Edit</a>

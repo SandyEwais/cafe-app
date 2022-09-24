@@ -52,7 +52,7 @@ class CategoryController extends Controller
             'image' => $image,
             'description' => $request->description
         ]);
-        return redirect()->route('admin.categories.index');
+        return redirect()->route('admin.categories.index')->with('store','Category Added Successfully !');
     }
 
     /**
@@ -100,7 +100,7 @@ class CategoryController extends Controller
             'image' => $image,
             'description' => $request->description
         ]);
-        return redirect()->route('admin.categories.index');
+        return redirect()->route('admin.categories.index')->with('update','Category Updated Successfully !');
     }
 
     /**
@@ -112,7 +112,7 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
-        return redirect()->route('admin.categories.index');
+        return redirect()->route('admin.categories.index')->with('delete','Category Deleted Successfully !');
 
     }
 }
